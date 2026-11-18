@@ -4,7 +4,7 @@
 
 **Takım:** Ş.B. Mimari
 
-**Konu:** Web forms (Web formları) ve Understanding client-side tools ()
+**Konu:** Web forms (Web formları) ve Understanding client-side tools 
 
 **Kaynak:** MDN Web Docs, Learn web development → Extension modules
 
@@ -14,7 +14,7 @@
 
 **(Web forms, Understanding client-side tools)**
 
-**&lt;u&gt;MODÜL 1: WEB FORMS(WEB FORMLARI)&lt;/u&gt;**
+**<u>MODÜL 1: WEB FORMS (WEB FORMLARI)</u>**
 
 Bu modül, web formlarının temel unsurlarını öğrenmenize yardımcı olacak bir dizi makale sunmaktadır. Web formları, kullanıcılarla etkileşim kurmak için çok güçlü bir araçtır — en yaygın olarak, kullanıcılardan veri toplamak veya kullanıcıların bir kullanıcı arayüzünü kontrol etmelerine olanak sağlamak amacıyla kullanılırlar. Ancak, tarihsel ve teknik nedenlerden ötürü, bunların potansiyelini tam olarak nasıl kullanacağınız her zaman açık değildir. Aşağıda listelenen makalelerde, HTML yapısını işaretleme, form denetimlerini biçimlendirme, form verilerini doğrulama ve verileri sunucuya gönderme dahil olmak üzere web formlarının tüm temel yönlerini ele alacağız.
 
@@ -1015,53 +1015,42 @@ checked />
 
   Form denetimlerini tanımlamak için kullanılan öğelerin çoğunun kendine özgü bazı öznitelikleri vardır. Bununla birlikte, tüm form öğelerinde ortak olan bir dizi öznitelik de mevcuttur. Bunların bir kısmıyla daha önce tanışmış olabilirsiniz, ancak referans olması açısından aşağıda bu ortak özniteliklerin bir listesi yer almaktadır:
 
-&lt;table&gt;
-&lt;colgroup&gt;
-&lt;col style=&quot;width: 25%&quot; /&gt;
-&lt;col style=&quot;width: 20%&quot; /&gt;
-&lt;col style=&quot;width: 53%&quot; /&gt;
-&lt;/colgroup&gt;
-&lt;tbody&gt;
-&lt;tr class=&quot;odd&quot;&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Attribute name&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(Özellik adı)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Default value&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(varsayılan değer )&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Description(Açıklama)&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&quot;even&quot;&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Autofocus&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(otomatik odaklama)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;&lt;p&gt;False&lt;/p&gt;
-&lt;p&gt;(yanlış)&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;Bu Boole özniteliği, sayfa yüklendiğinde öğenin otomatik olarak giriş odağına sahip olması gerektiğini belirtmenizi sağlar. Bir belgedeki formla ilişkili öğelerden yalnızca bir tanesi için bu öznitelik belirtilebilir.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&quot;odd&quot;&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Disabled&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(engelli)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;&lt;p&gt;False&lt;/p&gt;
-&lt;p&gt;(yanlış)&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;Bu Boole özniteliği, kullanıcının öğeyle etkileşime giremeyeceğini belirtir. Bu öznitelik belirtilmezse, öğe ayarını içeren öğeden devralır; örneğin, &amp;lt;fieldset&amp;gt;. Eğer “disabled” özniteliği ayarlanmış bir içeren öğe yoksa, öğe etkin hale gelir.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&quot;even&quot;&gt;
-&lt;td&gt;&lt;strong&gt;Form&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;___&lt;/td&gt;
-&lt;td&gt;Widget’ın ilişkili olduğu &amp;lt;form&amp;gt; öğesi; widget söz konusu formun içinde iç içe yer almıyorsa bu öğe kullanılır. Bu özniteliğin değeri, aynı belgedeki bir &amp;lt;form&amp;gt; öğesinin id özniteliği olmalıdır. Bu sayede, bir form denetimini, farklı bir form öğesinin içinde olsa bile, kendi dışında bulunan bir formla ilişkilendirebilirsiniz.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&quot;odd&quot;&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(ad)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;___&lt;/td&gt;
-&lt;td&gt;Öğenin adı; bu, form verileriyle birlikte gönderilir.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&quot;even&quot;&gt;
-&lt;td&gt;&lt;p&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;(değer)&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td&gt;___&lt;/td&gt;
-&lt;td&gt;Öğenin başlangıç değeri.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%">Attribute name<br>(Özellik adı)</th>
+      <th style="width: 20%">Default value<br>(Varsayılan değer)</th>
+      <th style="width: 55%">Description (Açıklama)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Autofocus</strong><br>(otomatik odaklama)</td>
+      <td>False<br>(yanlış)</td>
+      <td>Bu Boole özniteliği, sayfa yüklendiğinde öğenin otomatik olarak giriş odağına sahip olması gerektiğini belirtmenizi sağlar. Bir belgedeki formla ilişkili öğelerden yalnızca bir tanesi için bu öznitelik belirtilebilir.</td>
+    </tr>
+    <tr>
+      <td><strong>Disabled</strong><br>(devre dışı)</td>
+      <td>False<br>(yanlış)</td>
+      <td>Bu Boole özniteliği, kullanıcının öğeyle etkileşime giremeyeceğini belirtir. Bu öznitelik belirtilmezse, öğe ayarını içeren öğeden devralır; örneğin, <code>&lt;fieldset&gt;</code>. Eğer “disabled” özniteliği ayarlanmış bir içeren öğe yoksa, öğe etkin hale gelir.</td>
+    </tr>
+    <tr>
+      <td><strong>Form</strong></td>
+      <td>___</td>
+      <td>Widget’ın ilişkili olduğu <code>&lt;form&gt;</code> öğesi; widget söz konusu formun içinde iç içe yer almıyorsa bu öğe kullanılır. Bu özniteliğin değeri, aynı belgedeki bir <code>&lt;form&gt;</code> öğesinin id özniteliği olmalıdır. Bu sayede, bir form denetimini, farklı bir form öğesinin içinde olsa bile, kendi dışında bulunan bir formla ilişkilendirebilirsiniz.</td>
+    </tr>
+    <tr>
+      <td><strong>Name</strong><br>(ad)</td>
+      <td>___</td>
+      <td>Öğenin adı; bu, form verileriyle birlikte gönderilir.</td>
+    </tr>
+    <tr>
+      <td><strong>Value</strong><br>(değer)</td>
+      <td>___</td>
+      <td>Öğenin başlangıç değeri.</td>
+    </tr>
+  </tbody>
+</table>
 
 **Özet:**
 
@@ -1628,7 +1617,7 @@ Denetimin metni nasıl satır sonuna sığdıracağını belirler. Değerler şu
 
   - Aralığın üst kısmı, yüksek değer ile maksimum değer arasında yer alır (bu değerler dahil).
 
-&lt;!-- --&gt;
+
 
 - Optimum değer, \<meter\> öğesi için optimum değeri belirler. Düşük ve yüksek değerlerle birlikte, aralığın hangi kısmının tercih edildiğini belirler:
 
@@ -1640,7 +1629,7 @@ Denetimin metni nasıl satır sonuna sığdıracağını belirler. Değerler şu
 
     \<meter\> öğesini destekleyen tüm tarayıcılar, ölçer çubuğunun rengini değiştirmek için şu değerleri kullanır:
 
-&lt;!-- --&gt;
+
 
 - Mevcut değer aralığın tercih edilen kısmında ise, çubuk yeşil renktedir.
 
@@ -1896,7 +1885,7 @@ right: 0;
 
     Başlamadan önce yazı tiplerinizin biraz daha işlenmesi gerekiyor:
 
-&lt;!-- --&gt;
+
 
 1.  Transfonter Webfont oluşturucusuna gidin.
 
@@ -2215,10 +2204,9 @@ appearance: none;
 input[type="search"]:not(:focus, :active)::-webkit-search-cancel-button {
 display: none;
 }
-Setting form control color tints using accent-color
 ```
-
-  **(“accent-color” kullanarak form denetimlerinin renk tonlarını ayarlama):**
+**Setting form control color tints using accent-color**
+**(“accent-color” kullanarak form denetimlerinin renk tonlarını ayarlama):**
 
   Yalnızca onay kutularının, radyo düğmelerinin veya aralık kaydırıcılarının ana renk tonunu biçimlendirmek istiyorsanız, “accent-color” özelliği “appearance: none” ayarına gerek kalmadan bunu sağlar. Bu, temel biçimlendirme durumları için kullanışlıdır; çünkü denetimler işletim sistemi düzeyindeki biçimlerini korurken ana renkleri değiştirilir.
 
@@ -2979,10 +2967,9 @@ display: none;
 option:checked {
 font-weight: bold;
 }
-Styling the current selection checkmark
 ```
-
-  **(Seçili öğenin onay işaretinin stilini belirleme):**
+**Styling the current selection checkmark**
+**(Seçili öğenin onay işaretinin stilini belirleme):**
 
   Seçim yapmak için seçiciyi açtığınızda, o anda seçili olan \<option\> öğesinin inline-start ucunda bir onay işareti bulunduğunu muhtemelen fark etmişsinizdir. Bu onay işareti, ::checkmark sözde öğesi kullanılarak hedeflenebilir. Örneğin, bu onay işaretini gizlemek isteyebilirsiniz (örneğin, display: none ile).
 
@@ -4312,7 +4299,7 @@ Kayıt formu bulunan herhangi bir popüler siteye girdiğinizde, verilerinizi be
 
 - “Lütfen telefon numaranızı xxx-xxxx biçiminde girin” (Geçerli sayılması için belirli bir veri biçimi gereklidir).
 
-- “Lütfen geçerli bir e-posta adresi girin” (girdiğiniz veriler doğru biçimde değil). 
+- “Lütfen geçerli bir e-posta adresi girin” (girdiğiniz veriler doğru biçimde değil). 
 
 - “Şifreniz 8 ile 30 karakter arasında olmalı ve bir büyük harf, bir sembol ve bir rakam içermelidir.” (Verileriniz için çok belirli bir veri biçimi gereklidir).
 
@@ -4659,7 +4646,7 @@ box-shadow: none;
 
   Kısıtlama Doğrulama API'si, yukarıdaki öğelerde aşağıdaki özellikleri kullanıma sunar.
 
-&lt;!-- --&gt;
+
 
 - validationMessage: Kontrolün karşılamadığı doğrulama kısıtlamalarını (varsa) açıklayan, dil uyarlaması yapılmış bir mesaj döndürür. Kontrol, kısıtlama doğrulamasına tabi değilse (willValidate değeri false ise) veya öğenin değeri kısıtlamaları karşılıyorsa (geçerliyse), bu yöntem boş bir dize döndürür.
 
@@ -4681,7 +4668,7 @@ box-shadow: none;
 
   - ovalueMissing: Öğenin zorunlu bir özniteliği varsa ancak değeri yoksa true değerini, aksi takdirde false değerini döndürür. true olması durumunda öğe :invalid CSS sözde sınıfıyla eşleşir.
 
-&lt;!-- --&gt;
+
 
 - willValidate: Form gönderildiğinde öğenin geçerlilik denetiminden geçecekse true, aksi takdirde false değerini döndürür.
 
@@ -5100,7 +5087,7 @@ form.addEventListener("submit", handleSubmit);
 
   **Sending form data(Form verilerinin gönderilmesi):**
 
-  Form verileri istemci tarafında doğrulandıktan sonra, formu göndermek mümkündür. Ayrıca, önceki makalede doğrulama konusunu ele aldığımız için artık formu göndermeye hazırız! Bu makalede, bir kullanıcı formu gönderdiğinde neler olduğu ele alınacaktır — veriler nereye gider ve oraya ulaştığında bu veriler nasıl işlenir? Ayrıca, form verilerinin gönderilmesiyle ilgili bazı güvenlik endişelerini de inceleyeceğiz. Translated with DeepL.com (free version)
+  Form verileri istemci tarafında doğrulandıktan sonra, formu göndermek mümkündür. Ayrıca, önceki makalede doğrulama konusunu ele aldığımız için artık formu göndermeye hazırız! Bu makalede, bir kullanıcı formu gönderdiğinde neler olduğu ele alınacaktır — veriler nereye gider ve oraya ulaştığında bu veriler nasıl işlenir? Ayrıca, form verilerinin gönderilmesiyle ilgili bazı güvenlik endişelerini de inceleyeceğiz. 
 
 |              |                                                                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -5535,7 +5522,7 @@ enctype="multipart/form-data">
 
   Yeni kullanıcı etkileşimleri icat etmemek en iyisidir. Eklediğiniz her etkileşim için tasarım aşamasına zaman ayırmak hayati önem taşır; bir davranışı yanlış tanımlarsanız ya da tanımlamayı unutursanız, kullanıcılar buna alıştıktan sonra yeniden tanımlamak çok zor olacaktır. Şüpheleriniz varsa başkalarının görüşlerini alın ve bütçeniz elveriyorsa kullanıcı testleri yapmaktan çekinmeyin. Bu sürece UX Tasarımı denir. Bu konu hakkında daha fazla bilgi edinmek istiyorsanız, aşağıdaki faydalı kaynaklara göz atmalısınız:
 
-- UXMatters.com 
+- UXMatters.com 
 
 - SmashingMagazine’in UX Tasarımı bölümü
 
@@ -5671,7 +5658,7 @@ vertical-align: top;
 }
 ```
 
-  BeautificationAşağı okunu tasarlamak için ek bir öğeye ihtiyacımız yok; bunun yerine ::after sözde öğesini kullanıyoruz. Bu, select sınıfına basit bir arka plan görüntüsü eklenerek de uygulanabilir.
+  Aşağı okunu tasarlamak için ek bir öğeye ihtiyacımız yok; bunun yerine ::after sözde öğesini kullanıyoruz. Bu, select sınıfına basit bir arka plan görüntüsü eklenerek de uygulanabilir.
 
   **CSS:**
 
@@ -5769,17 +5756,17 @@ color: white;
   > [!WARNING]
 > Tarayıcıda JavaScript her zaman çalışmayabilir (bağlantı kopması, eklenti engeli, script hatası). Özel form bileşeni yazarken, JS çalışmadığında devreye girecek yerel HTML yedeğini (`fallback`) mutlaka tasarlayın. Özel denetimler, her şeyi bir araya getirmek için JavaScript'e dayanır. Ancak, JavaScript'in tarayıcıda çalışamadığı durumlar vardır:
 
-- Kullanıcı JavaScript'i devre dışı bırakmış: Bu nadir bir durumdur; günümüzde çok az kişi JavaScript'i devre dışı bırakır. 
+- Kullanıcı JavaScript'i devre dışı bırakmış: Bu nadir bir durumdur; günümüzde çok az kişi JavaScript'i devre dışı bırakır. 
 
-- Komut dosyası yüklenmedi: Bu, özellikle ağ bağlantısının pek güvenilir olmadığı mobil ortamlarda en sık karşılaşılan durumlardan biridir. 
+- Komut dosyası yüklenmedi: Bu, özellikle ağ bağlantısının pek güvenilir olmadığı mobil ortamlarda en sık karşılaşılan durumlardan biridir. 
 
 - Komut dosyasında hata var: Bu olasılığı her zaman göz önünde bulundurmalısınız.
 
 - Komut dosyası, üçüncü taraf bir komut dosyasıyla çakışıyor: Bu durum, izleme komut dosyaları veya kullanıcının kullandığı herhangi bir yer imi ile ortaya çıkabilir.
 
-- Komut dosyası, Firefox’un NoScript eklentisi gibi bir tarayıcı eklentisiyle çakışıyor veya bu eklentiden etkileniyor. 
+- Komut dosyası, Firefox’un NoScript eklentisi gibi bir tarayıcı eklentisiyle çakışıyor veya bu eklentiden etkileniyor. 
 
-- Kullanıcı eski bir tarayıcı kullanıyor ve ihtiyaç duyduğunuz özelliklerden biri desteklenmiyor: Bu durum, en yeni API’leri kullandığınızda sık sık ortaya çıkar. 
+- Kullanıcı eski bir tarayıcı kullanıyor ve ihtiyaç duyduğunuz özelliklerden biri desteklenmiyor: Bu durum, en yeni API’leri kullandığınızda sık sık ortaya çıkar. 
 
 - Kullanıcı, JavaScript’in tamamen indirilmesi, ayrıştırılması ve çalıştırılmasından önce içerikle etkileşime giriyor.
 
@@ -6015,11 +6002,12 @@ deactivateSelect(select);
 
     <img src="./gorseller/image100.png" style="width:1.1875in;height:0.32292in" />
 
-    Artık kontrolümüz çalıştığına göre, kullanıcı girdisine göre değerini güncelleyecek ve bu değeri form verileriyle birlikte gönderebilmeyi sağlayacak kod eklememiz gerekiyor.
+**Handling the control's value (Kontrolün değerini işleme):**
 
-    Bunu yapmanın en kolay yolu, arka planda yerel bir kontrol kullanmaktır. Böyle bir kontrol, tarayıcı tarafından sağlanan tüm yerleşik kontrollerle değeri takip eder ve form gönderildiğinde değer her zamanki gibi gönderilir. Tüm bunları bizim için halledebilecekken, tekerleği yeniden icat etmenin bir anlamı yoktur.Handling the control's value(Kontrolün değerini işleme):Artık kontrolümüz çalıştığına göre, kullanıcı girdisine göre değerini güncelleyecek ve bu değeri form verileriyle birlikte gönderebilmeyi sağlayacak kod eklememiz gerekiyor. Bunu yapmanın en kolay yolu, arka planda yerel bir kontrol kullanmaktır. Böyle bir kontrol, tarayıcı tarafından sağlanan tüm yerleşik kontrollerle değeri takip eder ve form gönderildiğinde değer her zamanki gibi gönderilir. Tüm bunları bizim için halledebilecekken, tekerleği yeniden icat etmenin bir anlamı yoktur.Daha önce de görüldüğü gibi, erişilebilirlik nedenleriyle zaten bir yerel select denetimini yedek olarak kullanıyoruz; bu denetimin değerini özel denetimimizin değeriyle senkronize edebiliriz:
+Artık kontrolümüz çalıştığına göre, kullanıcı girdisine göre değerini güncelleyecek ve bu değeri form verileriyle birlikte gönderebilmeyi sağlayacak kod eklememiz gerekiyor. Bunu yapmanın en kolay yolu, arka planda yerel bir kontrol kullanmaktır. Böyle bir kontrol, tarayıcı tarafından sağlanan tüm yerleşik kontrollerle değeri takip eder ve form gönderildiğinde değer her zamanki gibi gönderilir. Tüm bunları bizim için halledebilecekken, tekerleği yeniden icat etmenin bir anlamı yoktur.
 
-    **JS:**
+Daha önce de görüldüğü gibi, erişilebilirlik nedenleriyle zaten bir yerel select denetimini yedek olarak kullanıyoruz; bu denetimin değerini özel denetimimizin değeriyle senkronize edebiliriz:
+  **JS:**
 
     **// This function updates the displayed value and synchronizes it with the native control.**
 
@@ -6376,17 +6364,15 @@ send.addEventListener("click", sendData);
     > [!TIP]
 > `fetch()` kullanırken gövdeye `FormData` verdiğinizde `Content-Type` başlığını **elle yazmayın**. Tarayıcı, dosya sınırlarını (`boundary`) içeren doğru başlığı otomatik olarak ekler.
 
-```
-Associating a FormData object and a <form>
-```
 
-    **(FormData nesnesini bir \<form\> ile ilişkilendirme):**
+**Associating a FormData object and a \<form\>**
+**(FormData nesnesini bir \<form\> ile ilişkilendirme):**
 
-    Gönderdiğiniz veriler gerçekten bir \<form\>'dan geliyorsa, formu FormData yapıcıya aktararak FormData örneğini doldurabilirsiniz.
+Gönderdiğiniz veriler gerçekten bir \<form\>'dan geliyorsa, formu FormData yapıcıya aktararak FormData örneğini doldurabilirsiniz.
 
-    HTML'mizde bir \<form\> öğesi tanımlandığını varsayalım:
+HTML'mizde bir \<form\> öğesi tanımlandığını varsayalım:
 
-    **HTML:**
+**HTML:**
 
 ```html
 <form id="userinfo">
@@ -6472,9 +6458,9 @@ Pick a color
 
     **Form buttons(Form düğmeleri):**
 
-    HTML formları içinde düğmeleri tanımlamanın iki yolu vardır: 
+    HTML formları içinde düğmeleri tanımlamanın iki yolu vardır: 
 
-- type özniteliği button, submit, reset veya image değerlerine ayarlanmış \<input\> öğesi 
+- type özniteliği button, submit, reset veya image değerlerine ayarlanmış \<input\> öğesi 
 
 - \<button\> öğesi \<input\>
 
@@ -6584,15 +6570,15 @@ return testInput.type !== "text";
 
   Klavye erişilebilirliğini her zaman göz önünde bulundurmalısınız — birçok web kullanıcısı, web sitelerinde ve uygulamalarda gezinmek için yalnızca klavyeyi kullanır ve bu kullanıcıları işlevlerinizden mahrum bırakmak iyi bir fikir değildir.
 
-  **Topics covered(Ele alınan konular):**
+  **Topics covered(Ele alınan konular):**
 
-- Dokunmatik ekranları desteklemek amacıyla, dokunma olayları mobil cihazlardan buzdolabı panellerine ve müze kiosk ekranlarına kadar dokunmatik kullanıcı arayüzlerindeki parmak hareketlerini yorumlar. 
+- Dokunmatik ekranları desteklemek amacıyla, dokunma olayları mobil cihazlardan buzdolabı panellerine ve müze kiosk ekranlarına kadar dokunmatik kullanıcı arayüzlerindeki parmak hareketlerini yorumlar. 
 
-- Fullscreen API’si, içeriğinizi tam ekran modunda görüntülemenizi sağlar; bu, formunuzun bir buzdolabında veya müze kioskunda sunulması durumunda gereklidir. 
+- Fullscreen API’si, içeriğinizi tam ekran modunda görüntülemenizi sağlar; bu, formunuzun bir buzdolabında veya müze kioskunda sunulması durumunda gereklidir. 
 
-- Zengin metin düzenleyicisi gibi özel bir form denetimi oluşturmanız gerektiğinde, contentEditable özniteliği, normalde düzenlenemeyen HTML öğelerinden düzenlenebilir denetimler oluşturmanıza olanak tanır. 
+- Zengin metin düzenleyicisi gibi özel bir form denetimi oluşturmanız gerektiğinde, contentEditable özniteliği, normalde düzenlenemeyen HTML öğelerinden düzenlenebilir denetimler oluşturmanıza olanak tanır. 
 
-- Sürükle ve Bırak API’si, kullanıcıların öğeleri sayfa üzerinde sürükleyip farklı konumlara bırakmasına olanak tanır. Bu, yüklemek üzere dosya seçerken veya bir sayfa içindeki içerik modüllerini yeniden sıralarken kullanıcı deneyimini iyileştirmeye yardımcı olabilir. 
+- Sürükle ve Bırak API’si, kullanıcıların öğeleri sayfa üzerinde sürükleyip farklı konumlara bırakmasına olanak tanır. Bu, yüklemek üzere dosya seçerken veya bir sayfa içindeki içerik modüllerini yeniden sıralarken kullanıcı deneyimini iyileştirmeye yardımcı olabilir. 
 
 - Ekran yönü düzeniniz için önemliyse, CSS medya sorgularını kullanarak formlarınızı tarayıcının yönüne göre biçimlendirebilir veya hatta Ekran Yönü API’sini kullanarak ekran yönü durumunu okuyup başka eylemler gerçekleştirebilirsiniz.
 
@@ -6641,13 +6627,13 @@ window.addEventListener("keyup", handleKeyUp);
 
   Kullanıcının dikey mi yoksa yatay modda olduğuna bağlı olarak biraz farklı düzenlere ihtiyacınız varsa, web formlarını stillendirirken ekranın boyutuna veya yönüne göre farklı düzenler veya form denetim genişlikleri için CSS tanımlamak üzere CSS medya sorgularını kullanabilirsiniz.
 
-  Formunuz için ekran yönü önemliyse, Ekran Yönü API'si aracılığıyla ekran yönü durumunu okuyabilir, bu durum değiştiğinde bilgilendirilebilir ve ekran yönünü belirli bir duruma (genellikle dikey veya yatay) kilitleyebilirsiniz. 
+  Formunuz için ekran yönü önemliyse, Ekran Yönü API'si aracılığıyla ekran yönü durumunu okuyabilir, bu durum değiştiğinde bilgilendirilebilir ve ekran yönünü belirli bir duruma (genellikle dikey veya yatay) kilitleyebilirsiniz. 
 
-- Yön verileri, screenOrientation.type aracılığıyla veya CSS'de yön medya özelliği kullanılarak alınabilir. 
+- Yön verileri, screenOrientation.type aracılığıyla veya CSS'de yön medya özelliği kullanılarak alınabilir. 
 
-- Ekran yönü değiştiğinde, screen nesnesinde change olayı tetiklenir. 
+- Ekran yönü değiştiğinde, screen nesnesinde change olayı tetiklenir. 
 
-- Ekran yönünü kilitlemek, ScreenOrientation.lock() yöntemini çağırarak gerçekleştirilebilir. 
+- Ekran yönünü kilitlemek, ScreenOrientation.lock() yöntemini çağırarak gerçekleştirilebilir. 
 
 - ScreenOrientation.unlock() yöntemi, daha önce ayarlanmış olan tüm ekran kilitlerini kaldırır.
 
@@ -6706,43 +6692,43 @@ event.dataTransfer.setData("text/plain", "This text may be dragged.");
 
   contenteditable özniteliği, öğeyi otomatik olarak belgenin varsayılan sekme sırasına ekler; bu da tabindex özniteliğinin eklenmesine gerek olmadığı anlamına gelir. Ancak, kendi form denetimlerinizi oluştururken veri girişi için anlamsal olmayan öğeler kullandığınızda, diğer tüm durumlar için öğeye form denetimi işlevselliği kazandırmak üzere JavaScript ve ARIA eklemeniz gerekecektir.
 
-  İyi bir kullanıcı deneyimi sunmak için, oluşturduğunuz tüm özel form denetimleri erişilebilir olmalı ve yerel form denetimleri gibi çalışmalıdır: 
+  İyi bir kullanıcı deneyimi sunmak için, oluşturduğunuz tüm özel form denetimleri erişilebilir olmalı ve yerel form denetimleri gibi çalışmalıdır: 
 
-- Öğenin rolü, etiketi ve açıklaması ARIA ile eklenmelidir. 
+- Öğenin rolü, etiketi ve açıklaması ARIA ile eklenmelidir. 
 
-- Yukarıda açıklanan klavye, fare, dokunma ve işaretçi olayları dahil olmak üzere tüm kullanıcı giriş yöntemleri desteklenmelidir. 
+- Yukarıda açıklanan klavye, fare, dokunma ve işaretçi olayları dahil olmak üzere tüm kullanıcı giriş yöntemleri desteklenmelidir. 
 
 - Doğrulama, gönderme ve kullanıcı tarafından güncellenen içeriğin kaydedilmesi gibi işlevleri yönetmek için JavaScript gereklidir.
 
-  **Öğreticiler** 
+  **Öğreticiler** 
 
-- Dokunma olayları Kılavuzu 
+- Dokunma olayları Kılavuzu 
 
-- Ekran yönünü yönetme 
+- Ekran yönünü yönetme 
 
-- Tam ekran modunu kullanma 
+- Tam ekran modunu kullanma 
 
-- Sürükleme İşlemleri Kılavuzu 
+- Sürükleme İşlemleri Kılavuzu 
 
-- Form doğrulama 
+- Form doğrulama 
 
 - JavaScript aracılığıyla form gönderme
 
-  **Referans** 
+  **Referans** 
 
-- MouseEvent arabirimi 
+- MouseEvent arabirimi 
 
-- KeyboardEvent arabirimi 
+- KeyboardEvent arabirimi 
 
-- Dokunma olayları API'si 
+- Dokunma olayları API'si 
 
-- İşaretçi Kilidi API'si 
+- İşaretçi Kilidi API'si 
 
-- Ekran Yönü API'si 
+- Ekran Yönü API'si 
 
-- Tam Ekran API'si 
+- Tam Ekran API'si 
 
-- Sürükle ve Bırak API'si 
+- Sürükle ve Bırak API'si 
 
 - HTML contenteditable özniteliği
 
@@ -6750,7 +6736,7 @@ event.dataTransfer.setData("text/plain", "This text may be dragged.");
 
 **MODÜL 2: Understanding client-side web development tools(İstemci tarafı web geliştirme araçlarını anlamak):**
 
-İstemci tarafı araçlar ilk bakışta göz korkutucu gelebilir; ancak bu makale dizisi, en yaygın istemci tarafı araç türlerinden bazılarının amacını açıklamayı, birbiriyle zincirleme olarak kullanabileceğiniz araçları tanıtmayı, paket yöneticileri aracılığıyla bunların nasıl kurulacağını ve komut satırı üzerinden nasıl kontrol edileceğini anlatmayı amaçlamaktadır. Son olarak, verimli bir şekilde çalışmaya nasıl başlayacağınızı gösteren eksiksiz bir araç zinciri örneği sunarak konuyu tamamlıyoruz. Translated with DeepL.com (free version)
+İstemci tarafı araçlar ilk bakışta göz korkutucu gelebilir; ancak bu makale dizisi, en yaygın istemci tarafı araç türlerinden bazılarının amacını açıklamayı, birbiriyle zincirleme olarak kullanabileceğiniz araçları tanıtmayı, paket yöneticileri aracılığıyla bunların nasıl kurulacağını ve komut satırı üzerinden nasıl kontrol edileceğini anlatmayı amaçlamaktadır. Son olarak, verimli bir şekilde çalışmaya nasıl başlayacağınızı gösteren eksiksiz bir araç zinciri örneği sunarak konuyu tamamlıyoruz. 
 
 **Prerequisites(Ön Koşullar):**
 
@@ -6885,7 +6871,7 @@ Genel olarak, web geliştirme üç dil olarak düşünülür: HTML, CSS ve JavaS
 
   Bunlar genellikle, daha ileri gitmeden önce (örneğin, bir GitHub deposuna değişiklikleri göndermeye çalıştığınızda) kodunuzun doğru olduğundan emin olmak için testleri otomatik olarak çalıştıran araçlar şeklindedir. Buna linting dahil olabilir, ancak aynı zamanda kodunuzun bir kısmını çalıştırarak olması gerektiği gibi davrandığından emin olduğunuz birim testleri gibi daha sofistike prosedürler de olabilir.
 
-&lt;!-- --&gt;
+
 
 - Test yazmak için kullanılan çerçeveler arasında Jest, Mocha ve Jasmine bulunur.
 
@@ -6919,7 +6905,7 @@ Genel olarak, web geliştirme üç dil olarak düşünülür: HTML, CSS ve JavaS
 
   - Araç işlevselliğini kod düzenleyicinize entegre etmek için bir eklenti arıyorsanız, kod düzenleyicinin eklentiler/uzantılar sayfasına bakın — örneğin, VS Code uzantılarına göz atın. Ana sayfada öne çıkan uzantılara bir göz atın ve yine, istediğiniz türde bir uzantıyı (veya araç adını; örneğin, VS Code uzantıları sayfasında “ESLint” araması yapın) aramayı deneyin. Sonuçları aldığınızda, uzantının kalitesini gösteren bir gösterge olarak kaç yıldız aldığı veya kaç kez indirildiği gibi bilgilere göz atın.
 
-&lt;!-- --&gt;
+
 
 - Hangi araçları kullanacağınız konusunda soru sorabileceğiniz geliştirme ile ilgili forumlar; örneğin MDN Learn Discourse veya Stack Overflow.
 
@@ -7053,9 +7039,9 @@ npm init
 }
 ```
 
-  package.json dosyasına iki satır daha ekleyeceğiz:****
+  package.json dosyasına iki satır daha ekleyeceğiz:
 
-- “type”: “module”; bu ayar, Node'un tüm .js dosyalarını eski CommonJS modülleri yerine ES modülleri olarak yorumlamasını sağlar. Bu, genel olarak edinilmesi gereken iyi bir alışkanlıktır. 
+- “type”: “module”; bu ayar, Node'un tüm .js dosyalarını eski CommonJS modülleri yerine ES modülleri olarak yorumlamasını sağlar. Bu, genel olarak edinilmesi gereken iyi bir alışkanlıktır. 
 
 > [!TIP]
 > `package.json` dosyasına `"private": true` eklemek, projenizi yanlışlıkla açık npm kayıt defterine (`npm publish`) yayınlamanızı kesin olarak engeller.
@@ -7216,11 +7202,11 @@ npx vite build
 
   **A rough guide to package manager clients(Paket yöneticisi istemcileri hakkında genel bir rehber):**
 
-  Bu öğreticide Vite paketi npm kullanılarak yüklendi, ancak daha önce de belirtildiği gibi bazı alternatifler mevcuttur. En azından bunların varlığını bilmek ve araçlar arasında ortak olan komutlar hakkında genel bir fikir sahibi olmak faydalıdır. Bunlardan bazılarını zaten iş başında gördünüz, ancak diğerlerine de bir göz atalım. Bu liste zamanla genişleyecektir, ancak bu yazının yazıldığı tarihte aşağıdaki ana paket yöneticileri mevcuttur: 
+  Bu öğreticide Vite paketi npm kullanılarak yüklendi, ancak daha önce de belirtildiği gibi bazı alternatifler mevcuttur. En azından bunların varlığını bilmek ve araçlar arasında ortak olan komutlar hakkında genel bir fikir sahibi olmak faydalıdır. Bunlardan bazılarını zaten iş başında gördünüz, ancak diğerlerine de bir göz atalım. Bu liste zamanla genişleyecektir, ancak bu yazının yazıldığı tarihte aşağıdaki ana paket yöneticileri mevcuttur: 
 
-- npmjs.org adresindeki npm 
+- npmjs.org adresindeki npm 
 
-- pnpm.js.org adresindeki pnpm 
+- pnpm.js.org adresindeki pnpm 
 
 - yarnpkg.com adresindeki Yarn
 
@@ -7448,7 +7434,7 @@ verebilir veya hatta aşağıdaki Visual Studio Code örneğinde görüldüğü 
 
   Araç zinciriniz kendi ihtiyaçlarınıza bağlı olacaktır, ancak oldukça eksiksiz bir araç zinciri örneği olarak, başlangıçta kurulacak/başlatılacak araçlar şunlar olacaktır:
 
-- Kütüphane kurulum araçları — bağımlılıkları eklemek için. 
+- Kütüphane kurulum araçları — bağımlılıkları eklemek için. 
 
 - Kod sürüm kontrolü.
 
@@ -7545,9 +7531,9 @@ npx prettier --write ./index.html
 npm run format
 ```
 
-  Her değişiklik yaptığımızda bu komutu çalıştırmak yine de zahmetli olabilir; bu süreci otomatikleştirmek için birkaç yol vardır: 
+  Her değişiklik yaptığımızda bu komutu çalıştırmak yine de zahmetli olabilir; bu süreci otomatikleştirmek için birkaç yol vardır: 
 
-- Commit yapmadan önce kodun biçimlendirilip biçimlendirilmediğini test etmek için özel “git hook'ları” kullanmak. 
+- Commit yapmadan önce kodun biçimlendirilip biçimlendirilmediğini test etmek için özel “git hook'ları” kullanmak. 
 
 - Bir dosya her kaydedildiğinde Prettier komutlarını çalıştırmak için kod düzenleyici eklentilerini kullanmak.
 
@@ -7599,13 +7585,13 @@ export default [
 ];
 ```
 
-  Yukarıdaki ESLint yapılandırması: 
+  Yukarıdaki ESLint yapılandırması: 
 
-- “Önerilen” ESLint ayarlarını etkinleştirir 
+- “Önerilen” ESLint ayarlarını etkinleştirir 
 
-- Diğer araçlar için daha önce yaptığımız gibi, ESLint’e oluşturulan dosyaları yok saymasını söyler 
+- Diğer araçlar için daha önce yaptığımız gibi, ESLint’e oluşturulan dosyaları yok saymasını söyler 
 
-- ESLint’e .js ve .jsx dosyalarını denetime dahil etmesini söyler 
+- ESLint’e .js ve .jsx dosyalarını denetime dahil etmesini söyler 
 
 - ESLint’e tarayıcı küresel değişkenlerinin varlığını bildirir (no-undef gibi denetim kuralları tarafından var olmayan değişkenleri kontrol etmek için kullanılır).
 
@@ -7724,7 +7710,7 @@ npm run dev
 
     Şimdi birkaç değişiklik yapabilir ve bunların etkilerini anında görebiliriz.
 
-&lt;!-- --&gt;
+
 
 1.  src/App.jsx dosyasını favori metin düzenleyicinizde açın.
 
@@ -7755,11 +7741,11 @@ In the final article in our series, we take the example toolchain we built up in
 
 Proje yaşam döngüsünün bu bölümünde çözülmesi gereken çok çeşitli sorunlar olabilir. Bu nedenle, bu sorunları mümkün olduğunca az manuel müdahale gerektirecek şekilde ele alan bir araç zinciri oluşturmak önemlidir.
 
-İşte bu özel proje için dikkate alınması gereken birkaç nokta: 
+İşte bu özel proje için dikkate alınması gereken birkaç nokta: 
 
-- Üretim derlemesi oluşturma: Dosyaların küçültülmesini, parçalara ayrılmasını, ağaç sallama (tree-shaking) uygulamasının yapılmasını ve sürümlerin “önbellek temizliği”nden geçirilmesini sağlamak. 
+- Üretim derlemesi oluşturma: Dosyaların küçültülmesini, parçalara ayrılmasını, ağaç sallama (tree-shaking) uygulamasının yapılmasını ve sürümlerin “önbellek temizliği”nden geçirilmesini sağlamak. 
 
-- Testlerin çalıştırılması: Bu testler, “bu kod doğru biçimlendirilmiş mi?” sorusundan “bu şey beklediğim gibi çalışıyor mu?” sorusuna kadar uzanabilir; ayrıca başarısız testlerin dağıtımı engellemesini sağlamak da önemlidir. 
+- Testlerin çalıştırılması: Bu testler, “bu kod doğru biçimlendirilmiş mi?” sorusundan “bu şey beklediğim gibi çalışıyor mu?” sorusuna kadar uzanabilir; ayrıca başarısız testlerin dağıtımı engellemesini sağlamak da önemlidir. 
 
 - Güncellenen kodun canlı bir URL’ye fiilen dağıtılması: Ya da önce incelenebilmesi için bir staging URL’sine dağıtılması da mümkündür.
 
@@ -7805,11 +7791,11 @@ git status
 
   Hangi dosyaların izlendiği, hangi dosyaların hazırlama aşamasında olduğu vb. gibi bilgileri içeren bir durum raporu almalısınız — tüm bu terimler Git dilinin bir parçasıdır. Eğer “fatal: not a git repository” hatası alırsanız, bu durumda çalışma dizini bir Git çalışma dizini değildir ve git init komutunu kullanarak Git’i başlatmanız gerekir.
 
-  Şimdi önümüzde üç görev var: 
+  Şimdi önümüzde üç görev var: 
 
-- Yaptığımız değişiklikleri hazırlama aşamasına ekleyin (git'in dosyaları buradan commit edeceği yer için kullanılan özel bir isim). 
+- Yaptığımız değişiklikleri hazırlama aşamasına ekleyin (git'in dosyaları buradan commit edeceği yer için kullanılan özel bir isim). 
 
-- Değişiklikleri depoya commit edin. 
+- Değişiklikleri depoya commit edin. 
 
 - Değişiklikleri GitHub'a push edin.
 
