@@ -59,9 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    // Ses ve Uptime
+    // Ses, Modlar (Sunum / Tema / X-Ray) ve Uptime
     const btnAudioToggle = document.getElementById('btnAudioToggle');
     const audioIcon = document.getElementById('audioIcon');
+    const btnPresentation = document.getElementById('btnPresentation');
+    const btnThemeToggle = document.getElementById('btnThemeToggle');
+    const btnXrayToggle = document.getElementById('btnXrayToggle');
     const uptimeClock = document.getElementById('uptimeClock');
     const toastContainer = document.getElementById('toastContainer');
 
@@ -114,6 +117,76 @@ document.addEventListener('DOMContentLoaded', () => {
         audioIcon.textContent = audioEnabled ? '🔊' : '🔇';
         showToast('Ses Efektleri', audioEnabled ? 'Ses açık' : 'Ses kapatıldı', 'info');
     });
+
+    // ==========================================================================
+    // 1B. Üst Bar Modları: SUNUM / AÇIK-KOYU TEMA / X-RAY İSKELET
+    // ==========================================================================
+    function stampXrayTags() {
+        document.querySelectorAll('.input-wrapper').forEach(wrapper => {
+            const ctrl = wrapper.querySelector('input, select, textarea');
+            if (!ctrl) return;
+            const tag = ctrl.tagName.toLowerCase();
+            const parts = [tag];
+            if (ctrl.type && tag === 'input') parts.push(`type="${ctrl.type}"`);
+            if (ctrl.name) parts.push(`name="${ctrl.name}"`);
+            if (ctrl.required) parts.push('required');
+            if (ctrl.getAttribute('pattern')) parts.push('pattern');
+            wrapper.setAttribute('data-xray-tag', `<${parts.join(' ')}>`);
+        });
+    }
+
+    function applyTheme(theme) {
+        const isLight = theme === 'light';
+        document.body.classList.toggle('light-theme', isLight);
+        document.body.classList.toggle('dark-theme', !isLight);
+        if (btnThemeToggle) {
+            btnThemeToggle.classList.toggle('active', isLight);
+            btnThemeToggle.setAttribute('aria-pressed', String(isLight));
+            btnThemeToggle.textContent = isLight ? '🌙 KOYU' : '☀️ AÇIK';
+        }
+    }
+
+    try {
+        const savedTheme = localStorage.getItem('sbmimari-theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+            applyTheme(savedTheme);
+        }
+    } catch (e) {
+        // localStorage erişilemiyorsa varsayılan koyu temada kal
+    }
+
+    if (btnThemeToggle) {
+        btnThemeToggle.addEventListener('click', () => {
+            const nextTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+            applyTheme(nextTheme);
+            try { localStorage.setItem('sbmimari-theme', nextTheme); } catch (e) {}
+            playBeep(nextTheme === 'light' ? 740 : 480, 'sine', 0.06);
+            showToast('Tema Değiştirildi', nextTheme === 'light' ? 'Açık tema (projektör dostu) aktif.' : 'Koyu DevOps teması aktif.', 'info');
+        });
+    }
+
+    if (btnXrayToggle) {
+        btnXrayToggle.addEventListener('click', () => {
+            const active = document.body.classList.toggle('xray-mode');
+            if (active) stampXrayTags();
+            btnXrayToggle.classList.toggle('active', active);
+            btnXrayToggle.setAttribute('aria-pressed', String(active));
+            btnXrayToggle.textContent = active ? '🦴 X-RAY: AÇIK' : '🦴 X-RAY';
+            playBeep(active ? 820 : 420, 'triangle', 0.07);
+            showToast('X-Ray Form İskeleti', active ? 'Semantik HTML ve form öznitelikleri vurgulanıyor.' : 'X-Ray kapatıldı.', 'info');
+        });
+    }
+
+    if (btnPresentation) {
+        btnPresentation.addEventListener('click', () => {
+            const active = document.body.classList.toggle('presentation-mode');
+            btnPresentation.classList.toggle('active', active);
+            btnPresentation.setAttribute('aria-pressed', String(active));
+            btnPresentation.textContent = active ? '📽️ SUNUM: AÇIK' : '📽️ SUNUM';
+            playBeep(active ? 680 : 440, 'sine', 0.06);
+            showToast('Sunum Modu', active ? 'Büyük yazı boyutu aktif (sınıf sunumu için).' : 'Standart görünüm aktif.', 'info');
+        });
+    }
 
     // ==========================================================================
     // 2. Toast Bildirim Sistemi
@@ -579,7 +652,313 @@ Origin: http://localhost:5173`;
     });
 
     // ==========================================================================
-    // 10. Canlı Çalışma Süresi Saati (Uptime Counter)
+    // 10. Adım 2: İnteraktif "Doğru vs Yanlış" Deney Laboratuvarı
+    // ==========================================================================
+    const labGetUser = document.getElementById('labGetUser');
+    const labGetPass = document.getElementById('labGetPass');
+    const btnLabGet = document.getElementById('btnLabGet');
+    const btnLabPost = document.getElementById('btnLabPost');
+    const labHttpPreview = document.getElementById('labHttpPreview');
+    const labBadLabel = document.getElementById('labBadLabel');
+    const labBadStatus = document.getElementById('labBadStatus');
+    const labAccentPicker = document.getElementById('labAccentPicker');
+    const labAccentCode = document.getElementById('labAccentCode');
+    const btnLabAppearance = document.getElementById('btnLabAppearance');
+    const labStyleStage = document.getElementById('labStyleStage');
+
+    let labHttpMethod = 'GET';
+
+    function renderLabHttpPreview() {
+        if (!labHttpPreview || !labGetUser || !labGetPass) return;
+        const u = encodeURIComponent(labGetUser.value || '');
+        const p = encodeURIComponent(labGetPass.value || '');
+        if (labHttpMethod === 'GET') {
+            labHttpPreview.className = 'lab-http-preview bad';
+            labHttpPreview.innerHTML =
+                `GET /giris?k=${u}&sifre=${p} HTTP/1.1\nHost: okul.edu.tr` +
+                `<span class="warn-line">⚠️ TEHLİKE: Şifre URL adres çubuğuna, tarayıcı geçmişine ve sunucu loglarına düz metin yazıldı!</span>`;
+        } else {
+            labHttpPreview.className = 'lab-http-preview good';
+            labHttpPreview.innerHTML =
+                `POST /giris HTTP/1.1\nHost: okul.edu.tr\nContent-Type: application/x-www-form-urlencoded\n\nk=${u}&sifre=${p}` +
+                `<span class="ok-line">✓ DOĞRU: URL temiz kaldı (/giris). Hassas veri HTTP gövdesinde (HTTPS ile şifreli) gönderilir.</span>`;
+        }
+    }
+
+    if (btnLabGet && btnLabPost) {
+        btnLabGet.addEventListener('click', () => {
+            labHttpMethod = 'GET';
+            btnLabGet.classList.add('active');
+            btnLabPost.classList.remove('active');
+            renderLabHttpPreview();
+            playBeep(260, 'sawtooth', 0.06);
+        });
+        btnLabPost.addEventListener('click', () => {
+            labHttpMethod = 'POST';
+            btnLabPost.classList.add('active');
+            btnLabGet.classList.remove('active');
+            renderLabHttpPreview();
+            playBeep(680, 'triangle', 0.06);
+        });
+        [labGetUser, labGetPass].forEach(el => {
+            if (el) el.addEventListener('input', renderLabHttpPreview);
+        });
+        renderLabHttpPreview();
+    }
+
+    if (labBadLabel && labBadStatus) {
+        labBadLabel.addEventListener('click', () => {
+            labBadStatus.textContent = '✗ Gördün mü? Etikete tıkladın ama for="id" olmadığı için kutu odaklanmadı!';
+            labBadStatus.style.color = 'var(--danger)';
+            playBeep(220, 'sawtooth', 0.06);
+        });
+    }
+
+    if (labAccentPicker && labStyleStage && labAccentCode) {
+        labAccentPicker.addEventListener('input', (e) => {
+            const color = e.target.value;
+            labStyleStage.style.setProperty('--lab-accent', color);
+            labAccentCode.textContent = color;
+        });
+    }
+
+    if (btnLabAppearance && labStyleStage) {
+        btnLabAppearance.addEventListener('click', () => {
+            const on = labStyleStage.classList.toggle('custom-appearance');
+            btnLabAppearance.setAttribute('aria-pressed', String(on));
+            btnLabAppearance.textContent = on ? 'appearance: none (Açık)' : 'appearance: none (Kapalı)';
+            playBeep(on ? 720 : 460, 'sine', 0.05);
+        });
+    }
+
+    // ==========================================================================
+    // 10B. Adım 3: Canlı Regex / HTML5 pattern Laboratuvarı
+    // ==========================================================================
+    const regexPatternInput = document.getElementById('regexPatternInput');
+    const regexTestInput = document.getElementById('regexTestInput');
+    const regexResultBox = document.getElementById('regexResultBox');
+    const regexHtmlOut = document.getElementById('regexHtmlOut');
+    const regexPresetBtns = document.querySelectorAll('.regex-preset');
+
+    function evaluateRegexLab() {
+        if (!regexPatternInput || !regexTestInput || !regexResultBox || !regexHtmlOut) return;
+        const pat = regexPatternInput.value;
+        const val = regexTestInput.value;
+
+        regexHtmlOut.textContent = `<input type="text" pattern="${pat}" required>`;
+
+        if (!pat) {
+            regexResultBox.className = 'regex-result warn';
+            regexResultBox.textContent = '⚠️ Bir pattern (regex) kuralı girin.';
+            return;
+        }
+
+        try {
+            // HTML5 pattern tüm değeri eşler (^(?:...)$ mantığı)
+            const re = new RegExp(`^(?:${pat})$`);
+            if (!val) {
+                regexResultBox.className = 'regex-result warn';
+                regexResultBox.innerHTML = 'ℹ️ Değer boş — <code>validity.valueMissing: true</code>';
+                return;
+            }
+            const matched = re.test(val);
+            if (matched) {
+                regexResultBox.className = 'regex-result ok';
+                regexResultBox.innerHTML = '✓ Eşleşti! — <code>validity.valid: true</code> · <code>patternMismatch: false</code>';
+            } else {
+                regexResultBox.className = 'regex-result bad';
+                regexResultBox.innerHTML = '✗ Eşleşmedi! — <code>validity.valid: false</code> · <code>patternMismatch: true</code>';
+            }
+        } catch (err) {
+            regexResultBox.className = 'regex-result bad';
+            regexResultBox.textContent = `✗ Geçersiz Regex sözdizimi: ${err.message}`;
+        }
+    }
+
+    if (regexPatternInput && regexTestInput) {
+        regexPatternInput.addEventListener('input', evaluateRegexLab);
+        regexTestInput.addEventListener('input', evaluateRegexLab);
+        regexPresetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                regexPatternInput.value = btn.dataset.pattern || '';
+                regexTestInput.value = btn.dataset.sample || '';
+                evaluateRegexLab();
+                playBeep(640, 'sine', 0.04);
+            });
+        });
+        evaluateRegexLab();
+    }
+
+    // ==========================================================================
+    // 10C. Adım 4: Sınıf İçi İnteraktif Mini Sınav (6 Soru)
+    // ==========================================================================
+    const quizContainer = document.getElementById('quizContainer');
+    const quizScoreBadge = document.getElementById('quizScoreBadge');
+
+    const QUIZ_QUESTIONS = [
+        {
+            q: '<code>name</code> özniteliği olmayan bir <code>&lt;input&gt;</code> alanı form gönderildiğinde sunucuya gider mi?',
+            options: [
+                'Evet, id değeri otomatik olarak kullanılır',
+                'Hayır, name özniteliği olmayan alan sunucuya gönderilmez',
+                'Sadece POST yönteminde gönderilir',
+                'Sadece required yazılıysa gönderilir'
+            ],
+            answer: 1,
+            explain: 'Form verisi name=value çiftleri olarak gönderilir. name özniteliği yoksa tarayıcı o alanı isteğe hiç dahil etmez.'
+        },
+        {
+            q: 'İstemci tarafı (tarayıcı) doğrulaması tek başına güvenlik sağlar mı?',
+            options: [
+                'Evet, required ve pattern varsa sunucuya gerek yoktur',
+                'Hayır, sadece kullanıcı deneyimi (UX) içindir; sunucu doğrulaması şarttır',
+                'Sadece HTTPS kullanılıyorsa yeterlidir',
+                'Constraint Validation API kullanılırsa güvenlik tamdır'
+            ],
+            answer: 1,
+            explain: 'İstemci doğrulaması DevTools veya doğrudan HTTP isteğiyle kolayca atlanabilir. Gerçek güvenlik her zaman sunucuda sağlanır.'
+        },
+        {
+            q: 'Şifre ve hassas veriler neden <code>method="GET"</code> ile gönderilmez?',
+            options: [
+                'GET yöntemi sadece sayısal veri taşır',
+                'GET veriyi URL adres çubuğuna ekler; tarayıcı geçmişinde ve sunucu loglarında düz metin kalır',
+                'GET tarayıcıda form doğrulamasını kapatır',
+                'GET en fazla 5 karakter destekler'
+            ],
+            answer: 1,
+            explain: 'GET isteğinde parametreler ?sifre=... şeklinde URL’ye yazılır; geçmişte, proxy ve sunucu loglarında açıkça görünür.'
+        },
+        {
+            q: 'Bir formda <code>&lt;input type="file"&gt;</code> ile dosya içeriğini sunucuya göndermek için hangi <code>enctype</code> zorunludur?',
+            options: [
+                'application/x-www-form-urlencoded',
+                'text/plain',
+                'multipart/form-data',
+                'application/json'
+            ],
+            answer: 2,
+            explain: 'enctype="multipart/form-data" yazılmazsa sunucuya yalnızca dosya adı gider, dosyanın ikili içeriği gönderilmez.'
+        },
+        {
+            q: '<code>fetch()</code> ile gövdeye <code>new FormData(form)</code> verirken <code>Content-Type</code> başlığını neden elle yazmamalıyız?',
+            options: [
+                'Tarayıcı benzersiz boundary değerini otomatik ekler; elle yazarsak boundary kaybolur',
+                'fetch() fonksiyonu Content-Type başlığını hiç desteklemez',
+                'FormData sadece GET isteğiyle çalışır',
+                'Sunucu CORS hatası verir'
+            ],
+            answer: 0,
+            explain: 'multipart/form-data parçaları ayırmak için boundary değerine ihtiyaç duyar; bunu tarayıcının otomatik üretmesine izin verilmelidir.'
+        },
+        {
+            q: '<code>:invalid</code> yerine <code>:user-invalid</code> kullanmanın temel avantajı nedir?',
+            options: [
+                'Daha hızlı çalışır',
+                'Sayfa açılır açılmaz boş zorunlu alanları kırmızıya boyamaz; kullanıcı etkileşime girdikten sonra uyarır',
+                'Sunucu doğrulamasının yerini alır',
+                'Sadece e-posta alanlarında çalışır'
+            ],
+            answer: 1,
+            explain: ':invalid daha kullanıcı hiçbir şey yazmadan formu hatalı gösterir; :user-invalid ise etkileşim sonrası devreye girerek çok daha iyi UX sunar.'
+        }
+    ];
+
+    let quizIndex = 0;
+    let quizScore = 0;
+
+    function renderQuiz() {
+        if (!quizContainer || !quizScoreBadge) return;
+
+        if (quizIndex >= QUIZ_QUESTIONS.length) {
+            quizScoreBadge.textContent = `Sonuç: ${quizScore} / ${QUIZ_QUESTIONS.length}`;
+            quizScoreBadge.className = quizScore >= 5 ? 'form-badge valid' : 'form-badge';
+            const msg = quizScore === QUIZ_QUESTIONS.length
+                ? 'Mükemmel! Web Forms & Client-Side Tools mimarisi tam oturdu.'
+                : quizScore >= 4
+                    ? 'Çok iyi! Birkaç küçük detaya Doğru vs Yanlış sekmesinden bakabilirsin.'
+                    : 'Tekrar deneyelim — üstteki Doğru vs Yanlış deneyleri tüm cevapları canlı gösteriyor.';
+
+            quizContainer.innerHTML = `
+                <div class="quiz-summary">
+                    <div class="quiz-summary-score">${quizScore} / ${QUIZ_QUESTIONS.length}</div>
+                    <p class="matrix-intro">${msg}</p>
+                    <button type="button" class="btn btn-primary" id="btnQuizRestart" style="flex:0;min-width:180px;">↺ Sınavı Yeniden Başlat</button>
+                </div>
+            `;
+            const restartBtn = document.getElementById('btnQuizRestart');
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    quizIndex = 0;
+                    quizScore = 0;
+                    renderQuiz();
+                    playBeep(560, 'sine', 0.05);
+                });
+            }
+            return;
+        }
+
+        const item = QUIZ_QUESTIONS[quizIndex];
+        const pct = Math.round(((quizIndex) / QUIZ_QUESTIONS.length) * 100);
+        quizScoreBadge.textContent = `Soru ${quizIndex + 1} / ${QUIZ_QUESTIONS.length} · Puan: ${quizScore}`;
+        quizScoreBadge.className = 'form-badge';
+
+        quizContainer.innerHTML = `
+            <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div>
+            <p class="quiz-question">${quizIndex + 1}. ${item.q}</p>
+            <div class="quiz-options">
+                ${item.options.map((opt, idx) => `<button type="button" class="quiz-opt-btn" data-opt="${idx}">${String.fromCharCode(65 + idx)}) ${opt}</button>`).join('')}
+            </div>
+            <div id="quizFeedbackArea"></div>
+        `;
+
+        const optBtns = quizContainer.querySelectorAll('.quiz-opt-btn');
+        const feedbackArea = document.getElementById('quizFeedbackArea');
+
+        optBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const chosen = Number(btn.dataset.opt);
+                const isCorrect = chosen === item.answer;
+                if (isCorrect) {
+                    quizScore++;
+                    playSuccessChime();
+                } else {
+                    playErrorBuzz();
+                }
+
+                optBtns.forEach((b, i) => {
+                    b.disabled = true;
+                    if (i === item.answer) b.classList.add('correct');
+                    else if (i === chosen) b.classList.add('wrong');
+                });
+
+                quizScoreBadge.textContent = `Soru ${quizIndex + 1} / ${QUIZ_QUESTIONS.length} · Puan: ${quizScore}`;
+
+                if (feedbackArea) {
+                    feedbackArea.innerHTML = `
+                        <div class="quiz-feedback ${isCorrect ? 'ok' : 'bad'}">
+                            <strong>${isCorrect ? '✓ Doğru!' : '✗ Yanlış.'}</strong> ${item.explain}
+                        </div>
+                        <div style="margin-top:0.75rem;display:flex;justify-content:flex-end;">
+                            <button type="button" class="btn btn-secondary" id="btnQuizNext">${quizIndex === QUIZ_QUESTIONS.length - 1 ? 'Sonucu Gör →' : 'Sonraki Soru →'}</button>
+                        </div>
+                    `;
+                    const nextBtn = document.getElementById('btnQuizNext');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', () => {
+                            quizIndex++;
+                            renderQuiz();
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    renderQuiz();
+
+    // ==========================================================================
+    // 11. Canlı Çalışma Süresi Saati (Uptime Counter)
     // ==========================================================================
     let uptimeSeconds = 0;
     setInterval(() => {

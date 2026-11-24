@@ -43,6 +43,11 @@
             <div class="status-indicator">
                 <span>API: <strong>Constraint Validation</strong></span>
             </div>
+            <div class="studio-mode-controls">
+                <button type="button" id="btnPresentation" class="mode-toggle-btn" aria-pressed="false" title="Sınıf Sunum Modu (Büyük Yazı)">📽️ SUNUM</button>
+                <button type="button" id="btnThemeToggle" class="mode-toggle-btn" aria-pressed="false" title="Açık / Koyu Tema Değiştir">☀️ AÇIK</button>
+                <button type="button" id="btnXrayToggle" class="mode-toggle-btn" aria-pressed="false" title="Semantik HTML ve Form Etiketlerini Canlı Göster">🦴 X-RAY</button>
+            </div>
             <button id="btnAudioToggle" class="icon-toggle-btn" title="Ses Efektlerini Aç/Kapat" aria-label="Ses Efektleri">
                 <span id="audioIcon">🔊</span>
             </button>
@@ -245,11 +250,15 @@
                 </button>
                 <button type="button" class="tab-btn" data-tab="tab-toolchain">
                     <span class="tab-icon">⚙️</span>
-                    <span>Client-Side Toolchain (npm/Vite)</span>
+                    <span>Toolchain (npm/Vite)</span>
+                </button>
+                <button type="button" class="tab-btn" data-tab="tab-lab">
+                    <span class="tab-icon">🧪</span>
+                    <span>Doğru vs Yanlış</span>
                 </button>
                 <button type="button" class="tab-btn" data-tab="tab-mdn">
                     <span class="tab-icon">📚</span>
-                    <span>Mimari & MDN Notları</span>
+                    <span>MDN Notları</span>
                 </button>
             </div>
 
@@ -354,7 +363,127 @@ Origin: http://localhost:5173</code></pre>
                 </div>
             </div>
 
-            <!-- SEKME 3: MİMARİ & MDN NOTLARI -->
+            <!-- SEKME 3: İNTERAKTİF DOĞRU VS YANLIŞ DENEY LABORATUVARI -->
+            <div class="tab-content" id="tab-lab">
+                <div class="lab-stack">
+                    <!-- Deney 1: GET vs POST -->
+                    <article class="lab-card">
+                        <div class="lab-card-header">
+                            <h3>1. GET vs POST — Şifre Neden GET ile Gönderilmez?</h3>
+                            <span class="lab-ref">MDN: Sending Form Data</span>
+                        </div>
+                        <div class="lab-inline-inputs">
+                            <label class="lab-field">
+                                <span>Kullanıcı (<code>name="k"</code>)</span>
+                                <input type="text" id="labGetUser" value="mert" autocomplete="off">
+                            </label>
+                            <label class="lab-field">
+                                <span>Şifre (<code>name="sifre"</code>)</span>
+                                <input type="password" id="labGetPass" value="gizli123" autocomplete="off">
+                            </label>
+                        </div>
+                        <div class="lab-toggle-row">
+                            <button type="button" class="lab-pill bad active" id="btnLabGet">✗ GET ile Gönder</button>
+                            <button type="button" class="lab-pill good" id="btnLabPost">✓ POST ile Gönder</button>
+                        </div>
+                        <div class="lab-http-preview bad" id="labHttpPreview" aria-live="polite"></div>
+                    </article>
+
+                    <!-- Deney 2: :invalid vs :user-invalid -->
+                    <article class="lab-card">
+                        <div class="lab-card-header">
+                            <h3>2. <code>:invalid</code> vs <code>:user-invalid</code> Farkı</h3>
+                            <span class="lab-ref">MDN: UI Pseudo-Classes</span>
+                        </div>
+                        <div class="lab-compare-grid">
+                            <div class="lab-box bad">
+                                <span class="lab-badge bad">✗ :invalid (Erken Uyarı)</span>
+                                <input type="email" class="demo-invalid-early" required placeholder="Daha yazmadan kırmızı!">
+                                <small>Sayfa açılır açılmaz boş zorunlu alan hatalı görünür.</small>
+                            </div>
+                            <div class="lab-box good">
+                                <span class="lab-badge good">✓ :user-invalid (Doğru UX)</span>
+                                <input type="email" class="demo-user-invalid" required placeholder="Yazıp çıkınca kontrol eder">
+                                <small>Kullanıcı etkileşime girdikten sonra kırmızı olur.</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Deney 3: label for=id -->
+                    <article class="lab-card">
+                        <div class="lab-card-header">
+                            <h3>3. <code>&lt;label for="id"&gt;</code> Bağlı vs Bağsız Etiket</h3>
+                            <span class="lab-ref">MDN: Form Structure</span>
+                        </div>
+                        <div class="lab-compare-grid">
+                            <div class="lab-box bad">
+                                <span class="lab-badge bad">✗ Bağ Yok (Tıklamayı dene)</span>
+                                <label class="lab-click-label" id="labBadLabel">Ad Soyad (Bana tıkla)</label>
+                                <input type="text" placeholder="Odak buraya geçmez">
+                                <small id="labBadStatus">Etiket ile input birbirini tanımıyor.</small>
+                            </div>
+                            <div class="lab-box good">
+                                <span class="lab-badge good">✓ for="id" Bağlı</span>
+                                <label class="lab-click-label" for="labGoodInput">Ad Soyad (Bana tıkla)</label>
+                                <input type="text" id="labGoodInput" placeholder="Etikete tıklayınca odaklanır!">
+                                <small>Ekran okuyucu da bu alanı "Ad Soyad" diye okur.</small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Deney 4: accent-color & appearance: none -->
+                    <article class="lab-card">
+                        <div class="lab-card-header">
+                            <h3>4. <code>accent-color</code> &amp; <code>appearance: none</code></h3>
+                            <span class="lab-ref">MDN: Advanced Styling</span>
+                        </div>
+                        <div class="lab-style-controls">
+                            <label class="lab-color-pick">
+                                <span>accent-color:</span>
+                                <input type="color" id="labAccentPicker" value="#38bdf8">
+                                <code id="labAccentCode">#38bdf8</code>
+                            </label>
+                            <button type="button" class="btn-micro" id="btnLabAppearance" aria-pressed="false">appearance: none (Kapalı)</button>
+                        </div>
+                        <div class="lab-style-stage" id="labStyleStage">
+                            <label><input type="checkbox" checked> Onay Kutusu</label>
+                            <label><input type="radio" name="labRad" checked> Seçenek A</label>
+                            <label><input type="radio" name="labRad"> Seçenek B</label>
+                            <input type="range" min="0" max="100" value="65" aria-label="Örnek kaydırıcı">
+                        </div>
+                    </article>
+
+                    <!-- Deney 5: Canlı Regex / HTML5 pattern Laboratuvarı -->
+                    <article class="lab-card" id="regexLabCard">
+                        <div class="lab-card-header">
+                            <h3>5. Canlı <code>pattern</code> (Regex) Laboratuvarı</h3>
+                            <span class="lab-ref">MDN: Client-Side Validation</span>
+                        </div>
+                        <div class="regex-presets">
+                            <button type="button" class="btn-micro regex-preset" data-pattern="^SRV-[0-9]{4}$" data-sample="SRV-2026">Sunucu Kodu</button>
+                            <button type="button" class="btn-micro regex-preset" data-pattern="^05[0-9]{9}$" data-sample="05551234567">TR Telefon</button>
+                            <button type="button" class="btn-micro regex-preset" data-pattern="^[A-Z]{3}[0-9]{2}$" data-sample="ABC42">Slayt Kodu</button>
+                            <button type="button" class="btn-micro regex-preset" data-pattern="^(?=.*[A-Z])(?=.*[0-9]).{8,}$" data-sample="Mimari2026">Güçlü Şifre</button>
+                        </div>
+                        <div class="lab-inline-inputs">
+                            <label class="lab-field">
+                                <span><code>pattern</code> Kuralı (Regex)</span>
+                                <input type="text" id="regexPatternInput" value="^SRV-[0-9]{4}$" spellcheck="false" autocomplete="off">
+                            </label>
+                            <label class="lab-field">
+                                <span>Test Değeri (<code>value</code>)</span>
+                                <input type="text" id="regexTestInput" value="SRV-2026" spellcheck="false" autocomplete="off">
+                            </label>
+                        </div>
+                        <div class="regex-result ok" id="regexResultBox" aria-live="polite">
+                            ✓ Eşleşti — <code>validity.patternMismatch: false</code>
+                        </div>
+                        <pre class="regex-html-out"><code id="regexHtmlOut">&lt;input type="text" pattern="^SRV-[0-9]{4}$" required&gt;</code></pre>
+                    </article>
+                </div>
+            </div>
+
+            <!-- SEKME 4: MİMARİ & MDN NOTLARI -->
             <div class="tab-content" id="tab-mdn">
                 <div class="mdn-notes-list">
                     <div class="callout-card alert-warning">
@@ -389,6 +518,58 @@ Origin: http://localhost:5173</code></pre>
                         <p><code>type="email"</code> varsayılan regex kuralı yerel ağ (intranet) adreslerine izin verdiği için <code>a@b</code> geçerli bir e-posta kabul edilir. Daha sıkı kural için <code>pattern</code> özniteliği kullanılmalıdır.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ================= ALT SOL PANEL: MDN MÜFREDAT EŞLEŞTİRME MATRİSİ ================= -->
+        <section class="panel-card matrix-workspace" id="mdnMatrixSection">
+            <div class="panel-header">
+                <div class="panel-title-group">
+                    <span class="panel-icon">📋</span>
+                    <h2>MDN Müfredat Eşleştirme Matrisi</h2>
+                </div>
+                <span class="form-badge valid">10/10 Kapsam</span>
+            </div>
+            <div class="matrix-body">
+                <p class="matrix-intro">MDN <em>Web Forms</em> ve <em>Client-Side Tools</em> modüllerindeki konuların bu uygulamadaki canlı karşılıkları:</p>
+                <div class="table-wrap">
+                    <table class="mdn-matrix-table">
+                        <caption>Tablo 1: Modül 07 MDN başlıkları ve uygulamadaki gerçek karşılıkları</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">✓</th>
+                                <th scope="col">MDN Konusu</th>
+                                <th scope="col">Bu Uygulamada Nerede?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>✓</td><th scope="row">Form Yapısı &amp; Etiketler</th><td><code>&lt;fieldset&gt;</code>, <code>&lt;legend&gt;</code>, <code>&lt;label for="id"&gt;</code> ve <strong>X-Ray</strong> modu</td></tr>
+                            <tr><td>✓</td><th scope="row">HTML5 Giriş Türleri</th><td><code>text</code>, <code>email</code>, <code>tel</code>, <code>range</code>, <code>file</code>, <code>color</code>, <code>select</code></td></tr>
+                            <tr><td>✓</td><th scope="row">Yerleşik Doğrulama</th><td><code>required</code>, <code>minlength</code>, <code>pattern="^SRV-[0-9]{4}$"</code> ve Regex Lab</td></tr>
+                            <tr><td>✓</td><th scope="row">Constraint Validation API</th><td>Sol alttaki <strong>Canlı Validation HUD</strong> (<code>element.validity</code>)</td></tr>
+                            <tr><td>✓</td><th scope="row">UI Sözde Sınıfları</th><td>Doğru vs Yanlış sekmesi: <code>:invalid</code> vs <code>:user-invalid</code> deneyi</td></tr>
+                            <tr><td>✓</td><th scope="row">Gelişmiş Form Stili</th><td>Canlı <code>accent-color</code> seçici ve <code>appearance: none</code> anahtarı</td></tr>
+                            <tr><td>✓</td><th scope="row">Veri Gönderme (GET/POST)</th><td><code>GET</code> şifre ifşası deneyi + <code>enctype="multipart/form-data"</code></td></tr>
+                            <tr><td>✓</td><th scope="row">JS ile Gönderme (FormData)</th><td><code>new FormData(form)</code> + gerçek <code>fetch()</code> POST isteği ve Ağ İnceleyici</td></tr>
+                            <tr><td>✓</td><th scope="row">Paket Yönetimi (npm)</th><td><code>package.json</code>, <code>npm-demo.js</code> (<code>chalk</code>) ve sanal terminal</td></tr>
+                            <tr><td>✓</td><th scope="row">Toolchain &amp; CI/CD</th><td>ESLint, Vitest, Vite <code>build</code> ve GitHub Actions dağıtım simülatörü</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ALT SAĞ PANEL: İNTERAKTİF MİNİ SINAV ================= -->
+        <section class="panel-card quiz-workspace" id="miniQuizSection">
+            <div class="panel-header">
+                <div class="panel-title-group">
+                    <span class="panel-icon">🎯</span>
+                    <h2>Sınıf İçi Mini Sınav (6 Soru)</h2>
+                </div>
+                <span class="form-badge" id="quizScoreBadge">Soru 1 / 6</span>
+            </div>
+            <div class="quiz-body" id="quizContainer" aria-live="polite">
+                <!-- JS tarafından doldurulur -->
             </div>
         </section>
 

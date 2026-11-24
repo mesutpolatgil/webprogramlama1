@@ -29,7 +29,20 @@ Bu proje, standart bir form ödevinin ötesine geçerek **"Sistem Mimarları Dev
   - `npm run test`: Vitest birim test koşumu simülasyonu.
   - `npm run build`: Vite bundle üretimi ve dist gzip istatistikleri.
   - `git push (CI/CD)`: GitHub Actions Pages dağıtım hattı simülasyonu.
-- **Mimari & MDN Notları:** Ders kapsamında çıkarılan 15 kritik MDN uyarısını içeren bilgi kartları.
+- **Mimari & MDN Notları:** Ders kapsamında çıkarılan kritik MDN uyarılarını içeren bilgi kartları.
+
+#### 3. Sınıf İçi Sunum & Etkileşim Araçları
+- **🦴 X-Ray Form İskeleti:** Tek tıkla sayfadaki `<header>`, `<main>`, `<section>`, `<form method="POST" enctype="multipart/form-data" novalidate>`, `<fieldset> + <legend>` ve her denetimin `type`, `name`, `required`, `pattern` özniteliklerini canlı çerçevelerle vurgular.
+- **☀️ Açık / 🌙 Koyu Tema:** Projektör ortamı için yüksek kontrastlı açık tema geçişi (`localStorage` ile kalıcı).
+- **📽️ Sunum Modu:** Sınıfın arka sırasından rahat okunabilirlik için tüm yazı ve bileşen ölçeğini büyütür.
+- **🧪 Doğru vs Yanlış Deney Laboratuvarı:**
+  - `GET` vs `POST` canlı HTTP önizlemesi (şifrenin URL'de ifşa olması vs gövdede gönderilmesi).
+  - `:invalid` vs `:user-invalid` anlık UX farkı.
+  - `<label for="id">` bağlı vs bağsız etiket odaklama deneyi.
+  - `accent-color` renk seçici ve `appearance: none` canlı stil anahtarı.
+  - **Canlı `pattern` (Regex) Laboratuvarı:** Hazır şablonlar ve özel regex testi (`validity.patternMismatch` sonucu + canlı HTML çıktısı).
+- **📋 MDN Müfredat Eşleştirme Matrisi (10/10):** Web Forms ve Client-Side Tools konularının uygulamadaki birebir karşılıklarını gösteren erişilebilir semantik tablo.
+- **🎯 Sınıf İçi Mini Sınav (6 Soru):** Sesli/görsel geri bildirimli, açıklamalı ve puanlı interaktif değerlendirme.
 
 ---
 
