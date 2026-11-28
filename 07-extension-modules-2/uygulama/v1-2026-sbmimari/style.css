@@ -1140,3 +1140,803 @@ pre {
         text-align: center;
     }
 }
+
+/* ==========================================================================
+   Adım 1: Üst Bar Mod Butonları (SUNUM / TEMA / X-RAY)
+   ========================================================================== */
+.studio-mode-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.mode-toggle-btn {
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    padding: 0.28rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.mode-toggle-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--primary);
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.mode-toggle-btn.active {
+    background: var(--primary);
+    color: #06101d;
+    border-color: var(--primary);
+    box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.mode-toggle-btn:focus-visible,
+.icon-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+@media (max-width: 1180px) {
+    .studio-header {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+    .studio-status-bar {
+        flex-wrap: wrap;
+        gap: 0.65rem;
+    }
+}
+
+/* ==========================================================================
+   Açık Tema (Projektör / Sınıf Dostu Yüksek Kontrast)
+   ========================================================================== */
+body.light-theme {
+    --bg-main: #eef3f8;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --bg-surface: #e2e8f0;
+    --bg-terminal: #0f172a;
+
+    --border-subtle: #cbd5e1;
+    --border-medium: #94a3b8;
+    --border-focus: #0284c7;
+
+    --primary: #0284c7;
+    --primary-glow: rgba(2, 132, 199, 0.2);
+    --primary-hover: #0369a1;
+
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+    --text-accent: #0284c7;
+
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+body.light-theme .studio-header,
+body.light-theme .studio-footer {
+    background: #ffffff;
+    border-color: var(--border-subtle);
+}
+
+body.light-theme .panel-card {
+    box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.12);
+}
+
+body.light-theme .panel-header,
+body.light-theme .terminal-tab-bar,
+body.light-theme .validation-hud {
+    background: #f8fafc;
+}
+
+body.light-theme .form-section {
+    background: #f8fafc;
+}
+
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="tel"],
+body.light-theme select {
+    background: #ffffff;
+    color: var(--text-primary);
+}
+
+body.light-theme input[type="text"]:focus,
+body.light-theme input[type="email"]:focus,
+body.light-theme input[type="tel"]:focus,
+body.light-theme select:focus {
+    background: #ffffff;
+}
+
+body.light-theme .drop-zone {
+    background: #f1f5f9;
+}
+
+body.light-theme .btn-secondary {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+body.light-theme .btn-secondary:hover {
+    background: #cbd5e1;
+}
+
+body.light-theme .cmd-card {
+    background: #f8fafc;
+}
+
+body.light-theme .cmd-card:hover {
+    background: #e0f2fe;
+}
+
+body.light-theme .mode-toggle-btn.active {
+    color: #ffffff;
+}
+
+body.light-theme .callout-card code {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+}
+
+body.light-theme .toast {
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+}
+
+/* ==========================================================================
+   Sunum Modu (Sınıfta Arka Sıradan Rahat Okunabilirlik)
+   ========================================================================== */
+body.presentation-mode {
+    font-size: 18px;
+}
+
+body.presentation-mode .studio-workspace {
+    max-width: 100%;
+    padding: 1.75rem 2rem;
+    gap: 1.75rem;
+}
+
+body.presentation-mode .panel-header h2 {
+    font-size: 1.45rem;
+}
+
+body.presentation-mode .section-legend {
+    font-size: 1.15rem;
+}
+
+body.presentation-mode .form-label,
+body.presentation-mode .custom-checkbox,
+body.presentation-mode .callout-card p,
+body.presentation-mode .toolchain-info p {
+    font-size: 1rem;
+}
+
+body.presentation-mode input[type="text"],
+body.presentation-mode input[type="email"],
+body.presentation-mode input[type="tel"],
+body.presentation-mode select,
+body.presentation-mode .btn {
+    font-size: 1.05rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+body.presentation-mode pre,
+body.presentation-mode .terminal-logs,
+body.presentation-mode .hud-badge {
+    font-size: 0.95rem;
+}
+
+body.presentation-mode .tab-btn {
+    font-size: 0.95rem;
+    padding: 1rem;
+}
+
+/* ==========================================================================
+   X-RAY Modu (Semantik HTML & Web Forms İskeleti Canlı Gösterimi)
+   ========================================================================== */
+body.xray-mode header.studio-header,
+body.xray-mode main.studio-workspace,
+body.xray-mode section.panel-card,
+body.xray-mode form#mesajFormu,
+body.xray-mode fieldset.form-section,
+body.xray-mode section.validation-hud,
+body.xray-mode footer.studio-footer,
+body.xray-mode .input-wrapper[data-xray-tag] {
+    outline: 2px dashed var(--xray-color, #38bdf8);
+    outline-offset: -2px;
+    position: relative;
+}
+
+body.xray-mode header.studio-header { --xray-color: #f472b6; }
+body.xray-mode main.studio-workspace { --xray-color: #10b981; }
+body.xray-mode section.panel-card { --xray-color: #38bdf8; }
+body.xray-mode form#mesajFormu { --xray-color: #f59e0b; padding-top: 2.1rem; }
+body.xray-mode fieldset.form-section { --xray-color: #a78bfa; padding-top: 1.9rem; }
+body.xray-mode section.validation-hud { --xray-color: #22d3ee; }
+body.xray-mode footer.studio-footer { --xray-color: #f472b6; }
+body.xray-mode .input-wrapper[data-xray-tag] { --xray-color: #fb7185; margin-top: 1.15rem; }
+
+body.xray-mode header.studio-header::after,
+body.xray-mode main.studio-workspace::after,
+body.xray-mode section.panel-card::after,
+body.xray-mode form#mesajFormu::after,
+body.xray-mode fieldset.form-section::after,
+body.xray-mode section.validation-hud::after,
+body.xray-mode footer.studio-footer::after,
+body.xray-mode .input-wrapper[data-xray-tag]::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--xray-color, #38bdf8);
+    color: #04090d;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.08rem 0.45rem;
+    border-radius: 0 0 0 4px;
+    z-index: 30;
+    pointer-events: none;
+    line-height: 1.4;
+}
+
+body.xray-mode header.studio-header::after { content: "<header>"; }
+body.xray-mode main.studio-workspace::after { content: "<main>"; }
+body.xray-mode section.panel-card::after { content: "<section>"; }
+body.xray-mode form#mesajFormu::after { content: '<form method="POST" enctype="multipart/form-data" novalidate>'; left: 0; right: auto; border-radius: 0 0 4px 0; }
+body.xray-mode fieldset.form-section::after { content: "<fieldset> + <legend>"; }
+body.xray-mode section.validation-hud::after { content: '<section aria-label="Validation HUD">'; }
+body.xray-mode footer.studio-footer::after { content: "<footer>"; }
+body.xray-mode .input-wrapper[data-xray-tag]::after {
+    content: attr(data-xray-tag);
+    top: -1.15rem;
+    right: 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.64rem;
+}
+
+/* ==========================================================================
+   Adım 2: İnteraktif "Doğru vs Yanlış" Deney Laboratuvarı
+   ========================================================================== */
+.lab-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lab-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+body.light-theme .lab-card {
+    background: #f8fafc;
+}
+
+.lab-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.lab-card-header h3 {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.lab-card-header code {
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-size: 0.82rem;
+}
+
+.lab-ref {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+}
+
+.lab-inline-inputs,
+.lab-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+@media (max-width: 650px) {
+    .lab-inline-inputs,
+    .lab-compare-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.lab-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.lab-field input,
+.lab-box input[type="email"],
+.lab-box input[type="text"] {
+    width: 100%;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.7rem;
+    font-family: var(--font-ui);
+    font-size: 0.84rem;
+    outline: none;
+}
+
+body.light-theme .lab-field input,
+body.light-theme .lab-box input[type="email"],
+body.light-theme .lab-box input[type="text"] {
+    background: #ffffff;
+}
+
+.lab-toggle-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.lab-pill {
+    flex: 1;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.lab-pill.bad.active {
+    background: rgba(239, 68, 68, 0.16);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.lab-pill.good.active {
+    background: rgba(16, 185, 129, 0.16);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.lab-http-preview {
+    background: var(--bg-terminal);
+    color: #e2e8f0;
+    border: 1px solid var(--border-medium);
+    border-left: 4px solid var(--danger);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.lab-http-preview.good {
+    border-left-color: var(--success);
+}
+
+.lab-http-preview .warn-line {
+    color: #fca5a5;
+    display: block;
+    margin-top: 0.35rem;
+}
+
+.lab-http-preview .ok-line {
+    color: #6ee7b7;
+    display: block;
+    margin-top: 0.35rem;
+}
+
+.lab-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.lab-box.bad { border-top: 3px solid var(--danger); }
+.lab-box.good { border-top: 3px solid var(--success); }
+
+.lab-box small {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+}
+
+.lab-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+.lab-badge.bad { color: var(--danger); }
+.lab-badge.good { color: var(--success); }
+
+.lab-click-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: underline dotted;
+}
+
+/* Gerçek CSS :invalid vs :user-invalid demosu */
+.demo-invalid-early:invalid {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 2px var(--danger-glow);
+}
+.demo-invalid-early:valid,
+.demo-user-invalid:user-valid {
+    border-color: var(--success) !important;
+    box-shadow: 0 0 0 2px var(--success-glow);
+}
+.demo-user-invalid:user-invalid {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 2px var(--danger-glow);
+}
+
+/* accent-color & appearance: none demosu */
+.lab-style-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.lab-color-pick {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+}
+
+.lab-color-pick input[type="color"] {
+    width: 30px;
+    height: 26px;
+    border: 1px solid var(--border-medium);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.lab-style-stage {
+    --lab-accent: #38bdf8;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.84rem;
+    color: var(--text-primary);
+}
+
+.lab-style-stage input {
+    accent-color: var(--lab-accent);
+    cursor: pointer;
+}
+
+.lab-style-stage label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.lab-style-stage.custom-appearance input[type="checkbox"],
+.lab-style-stage.custom-appearance input[type="radio"] {
+    appearance: none;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 2px solid var(--lab-accent);
+    background: var(--bg-main);
+    display: inline-grid;
+    place-content: center;
+    transition: all 0.15s ease;
+}
+
+.lab-style-stage.custom-appearance input[type="checkbox"] {
+    border-radius: 4px;
+}
+
+.lab-style-stage.custom-appearance input[type="radio"] {
+    border-radius: 50%;
+}
+
+.lab-style-stage.custom-appearance input[type="checkbox"]:checked,
+.lab-style-stage.custom-appearance input[type="radio"]:checked {
+    background: var(--lab-accent);
+    box-shadow: 0 0 8px var(--lab-accent);
+}
+
+.lab-style-stage.custom-appearance input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: #06101d;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.lab-style-stage.custom-appearance input[type="radio"]:checked::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #06101d;
+}
+
+/* ==========================================================================
+   Adım 3: Canlı Regex / HTML5 pattern Laboratuvarı
+   ========================================================================== */
+.regex-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.regex-result {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+}
+
+.regex-result.ok {
+    color: var(--success);
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.regex-result.bad {
+    color: var(--danger);
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.regex-result.warn {
+    color: var(--warning);
+    border-color: rgba(245, 158, 11, 0.45);
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.regex-html-out {
+    margin: 0;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.75rem;
+    color: #93c5fd;
+}
+
+/* ==========================================================================
+   Adım 4: MDN Müfredat Eşleştirme Matrisi & İnteraktif Mini Sınav
+   ========================================================================== */
+.matrix-body,
+.quiz-body {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    flex: 1;
+}
+
+.matrix-intro {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+}
+
+.mdn-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.mdn-matrix-table caption {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 0.55rem 0.75rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.mdn-matrix-table th,
+.mdn-matrix-table td {
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: left;
+    vertical-align: top;
+}
+
+.mdn-matrix-table thead th {
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+}
+
+.mdn-matrix-table tbody td:first-child {
+    color: var(--success);
+    font-weight: 700;
+    text-align: center;
+    width: 28px;
+}
+
+.mdn-matrix-table tbody th {
+    color: var(--text-primary);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.mdn-matrix-table tbody td {
+    color: var(--text-secondary);
+}
+
+.mdn-matrix-table code {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--primary);
+}
+
+/* Mini Sınav */
+.quiz-progress-bar {
+    height: 6px;
+    background: var(--bg-surface);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.quiz-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--success));
+    transition: width 0.25s ease;
+}
+
+.quiz-question {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.45;
+}
+
+.quiz-question code {
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.quiz-opt-btn {
+    text-align: left;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+body.light-theme .quiz-opt-btn {
+    background: #f8fafc;
+}
+
+.quiz-opt-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.quiz-opt-btn:disabled {
+    cursor: default;
+}
+
+.quiz-opt-btn.correct {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.16);
+    color: var(--success);
+    font-weight: 600;
+}
+
+.quiz-opt-btn.wrong {
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.16);
+    color: var(--danger);
+}
+
+.quiz-feedback {
+    border-left: 4px solid var(--primary);
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 0.9rem;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+body.light-theme .quiz-feedback {
+    background: #f1f5f9;
+}
+
+.quiz-feedback.ok { border-left-color: var(--success); }
+.quiz-feedback.bad { border-left-color: var(--danger); }
+
+.quiz-summary {
+    text-align: center;
+    padding: 1.25rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.quiz-summary-score {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+body.xray-mode table.mdn-matrix-table {
+    outline: 2px dashed #f59e0b;
+    position: relative;
+}
